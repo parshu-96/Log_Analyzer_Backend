@@ -1,0 +1,25 @@
+{
+  "name": "log_analyzer_backend",
+  "version": "1.0.0",
+  "description": "A Hackathon idea for analyzing logs and providing insights.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parshu-96/Log_Analyzer_Backend.git"
+  },
+  "keywords": [],
+  "author": "Parshuram Mahindrakar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/parshu-96/Log_Analyzer_Backend/issues"
+  },
+  "homepage": "https://github.com/parshu-96/Log_Analyzer_Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.1"
+  }
+}
