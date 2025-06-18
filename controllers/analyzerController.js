@@ -21,7 +21,7 @@ exports.analyzeLogFile = async (req, res) => {
     // File content is in memory buffer
     const content = file.buffer.toString('utf-8');
     //console.log(content);
-    console.log("First 100 characters of file:", content.substring(0, 100));
+    //console.log("First 100 characters of file:", content.substring(0, 100));
 
     // Return success response
     res.status(200).json({
