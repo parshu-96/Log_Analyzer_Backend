@@ -1,22 +1,26 @@
-const dotenv = require("dotenv"); // Import dotenv to load environment variables
-dotenv.config(); // Load environment variables from .env file
+const dotenv = require("dotenv");
+dotenv.config(); // Load environment variables
 
 const express = require('express');
 const cors = require('cors');
 const analyzerRoutes = require('./routes/analyzerRoutes');
+const logFileRoutes = require('./routes/logFile.routes'); // ✅ lowercase recommended
 const connectDB = require("./db/db");
-connectDB(); // Call the function to connect to the database
+
+connectDB(); // Connect to MongoDB
+
 const app = express();
 
-// Allow requests from your frontend
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: 'http://localhost:5173' // React frontend URL
 }));
 
-// Use routes
-app.use('/api/analyze', analyzerRoutes);
+app.use(express.json()); // ✅ Required to parse JSON in POST requests
 
-// Use PORT from env
+// Mount routes
+app.use('/api/analyze', analyzerRoutes);
+app.use('/api/logfiles', logFileRoutes); // ✅ Check this name matches your router export
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Backend server running on http://localhost:${PORT}`);
