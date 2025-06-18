@@ -119,3 +119,40 @@ exports.updateLogPattern = async (req, res) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+exports.deleteLogPattern = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deleted = await LogPattern.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return res.status(404).json({ message: 'Log pattern not found' });
+    }
+
+    return res.status(200).json({ message: 'Log pattern deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting log pattern:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.deleteLogFileType = async (req, res) => {
+  const { logFileType } = req.params;
+
+  try {
+    const fileTypeDeleted = await LogFileType.findOneAndDelete({ name: logFileType });
+    const patternsDeleted = await LogPattern.deleteMany({ logFileType });
+
+    if (!fileTypeDeleted && patternsDeleted.deletedCount === 0) {
+      return res.status(404).json({ message: 'Log file type not found.' });
+    }
+
+    return res.status(200).json({
+      message: `Deleted log file type "${logFileType}" and ${patternsDeleted.deletedCount} pattern(s).`
+    });
+  } catch (error) {
+    console.error('Error deleting log file type and patterns:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};

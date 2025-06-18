@@ -11,4 +11,6 @@ router.post('/patterns', controller.addLogPatterns);
 router.get('/patterns/:logFileType', controller.getPatternsByLogFileType);
 router.put('/patterns/:id', controller.updateLogPattern);
 
+router.delete('/patterns/:id', controller.deleteLogPattern);
+router.delete('/:logFileType', controller.deleteLogFileType);
 module.exports = router;
