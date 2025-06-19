@@ -156,3 +156,13 @@ exports.deleteLogFileType = async (req, res) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+exports.getLogFileTypeNames = async (req, res) => {
+  try {
+    const filenames = await LogFileType.find({}, 'name'); // fetch only 'name' field
+    return res.status(200).json({ filenames }); // returns [{ name: "UacLog.log" }, ...]
+  } catch (error) {
+    console.error('Error fetching log file type names:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};

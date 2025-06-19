@@ -13,4 +13,9 @@ router.put('/patterns/:id', controller.updateLogPattern);
 
 router.delete('/patterns/:id', controller.deleteLogPattern);
 router.delete('/:logFileType', controller.deleteLogFileType);
+
+// New route to get just filenames
+router.get('/filenames', controller.getLogFileTypeNames);
+
+
 module.exports = router;
