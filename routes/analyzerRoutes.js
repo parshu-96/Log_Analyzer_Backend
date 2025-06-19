@@ -9,4 +9,6 @@ router.post(
   analyzerController.analyzeLogFile
 );
 
+router.post("/filter", analyzerController.filterCachedLogFile);
+
 module.exports = router;
